@@ -1,0 +1,86 @@
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+
+<dom-module id="sp-info-panel">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #info-panel {
+        border: 1px solid black;
+        border-radius: 8px;
+      }
+
+      #header {
+        padding: 5px;
+        background: transparent linear-gradient(to top, #423e81, #6462ae) repeat scroll 0 0;
+      }
+
+      #header h2 {
+        margin: 0;
+        color: white;
+        display: inline-block;
+      }
+
+      #header #hide-show {
+        float: right;
+        cursor: default;
+      }
+
+      #content {
+        padding: 5px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+    </style>
+    <div id="info-panel">
+      <div id="header">
+        <h2 id="title">[[title]]</h2>
+        <template is="dom-if" if="{{collapsible}}">
+          <h2 id="hide-show" on-click="toggleContent">Hide</h2>
+        </template>
+      </div>
+      <div id="content">
+        <slot></slot>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `sp-info-panel`
+     * a basic info panel 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class SpInfoPanel extends Polymer.Element {
+      static get is() { return 'sp-info-panel'; }
+      static get properties() {
+        return {
+          title: {
+            type: String,
+            value: 'default'
+          },
+          collapsible: {
+            type: Boolean,
+            value: false
+          }
+        };
+      }
+
+      toggleContent(e) {
+        var target = this.shadowRoot.querySelector('#hide-show');
+        target.innerHTML = target.innerHTML === 'Show' ? 'Hide' : 'Show';
+        this.$.content.classList.toggle('hidden');
+      }
+    }
+
+    window.customElements.define(SpInfoPanel.is, SpInfoPanel);
+  </script>
+</dom-module>
