@@ -21,6 +21,10 @@
       sp-info-panel {
         margin-bottom: 10px;
       }
+      
+      #header {
+        background-color: black;
+      }
     </style>
 
   </head>
@@ -29,10 +33,22 @@
       <h3>Basic sp-info-panel demo</h3>
       <demo-snippet>
         <template>
-          
-          <sp-info-panel title='Studies'>Hello World</sp-info-panel>
-         
-          <sp-info-panel title='Claims' collapsible=true>Hello World</sp-info-panel>
+        
+          <sp-info-panel></sp-info-panel>
+          <sp-info-panel title="Claims"></sp-info-panel>
+          <sp-info-panel title="Claims"> 
+            Hello World
+          </sp-info-panel>
+
+          <sp-info-panel title="Studies" collapsible> 
+            Hello World
+          </sp-info-panel>
+
+
+
+
+
+
         </template>
       </demo-snippet>
     </div>
